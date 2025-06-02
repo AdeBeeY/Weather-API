@@ -1,5 +1,5 @@
 import "./styles.css";
-import { getLocation } from "./api.js";
+import { hitApi } from "./api.js";
 
 
 const form = document.querySelector('form');
@@ -19,7 +19,7 @@ button.addEventListener('click', () => {
   } else {
     console.log(userLocationTrimed)
     // return userLocationTrimed;
-    getLocation(userLocationTrimed);
+    hitApi(userLocationTrimed);
   }
 })
 
