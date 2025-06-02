@@ -1,3 +1,36 @@
 body {
-  background-color: pink;
+  background-color: lightgray;
+  text-align: center;
+  margin: 0;
+}
+
+label,
+input,
+button {
+  font-size: 20px;
+  margin: 5px;
+  padding: 5px 20px;
+}
+
+form {
+  margin-top: 50px;
+  padding: 20px;
+  border: 1px solid white;
+  background-color: lab(82.41% 0 0.1);
+  margin-bottom: 50px;
+}
+
+.error {
+  display: none;
+}
+
+.active {
+  display: flex;
+  justify-self: center;
+  background-color: white;
+  color: red;
+  border: 1px dotted red;
+  padding: 5px 20px;
+  width: fit-content;
+  font-size: 14px;
 }
