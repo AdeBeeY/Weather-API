@@ -1,3 +1,4 @@
+import { renderWeatherInfo } from "./display";
 export { processJsonData };
 
 // Process the JSON() data and return an object of items needed.
@@ -14,7 +15,9 @@ async function processJsonData(data) {
     const uvindex = await data.currentConditions.uvindex;
     const icon = await data.currentConditions.icon;
     
-    console.log({resolvedAddress,latitude, longitude, conditions, feelslike, sunrise, sunset, temp, uvindex, icon})
+    let weatherInfo = {resolvedAddress,latitude, longitude, conditions, feelslike, sunrise, sunset, temp, uvindex, icon};
+
+    renderWeatherInfo(weatherInfo);
   } catch (errror) {
     console.log(error);
   }
