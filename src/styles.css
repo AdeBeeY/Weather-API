@@ -34,3 +34,25 @@ form {
   width: fit-content;
   font-size: 14px;
 }
+
+.network {
+  display: none;
+}
+
+.loadiing {
+  display: block;
+  color: blue;
+  font-size: 15px;
+  margin-bottom: 50px;
+}
+
+.render {
+  border: 1px solid black;
+  background-color: rgb(231, 230, 230);
+  padding: 20px;
+}
+
+.render > div {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

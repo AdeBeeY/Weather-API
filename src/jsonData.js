@@ -1,5 +1,7 @@
 import { renderWeatherInfo } from "./display";
 export { processJsonData };
+const display = document.querySelector('.display');
+const form = document.querySelector('form');
 
 // Process the JSON() data and return an object of items needed.
 async function processJsonData(data) {
@@ -19,6 +21,9 @@ async function processJsonData(data) {
 
     renderWeatherInfo(weatherInfo);
   } catch (errror) {
-    console.log(error);
+    form.style.display = 'none';
+    display.textContent = "An error was encountered while processing your data!";
+    display.style.color = 'red';
+    display.style.fontSize = '25px';
   }
 }
