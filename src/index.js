@@ -1,13 +1,11 @@
 import "./styles.css";
 import { hitApi } from "./api.js";
 
-
 const form = document.querySelector('form');
 const button = document.querySelector('button');
 let userLocation = document.getElementById('location');
 const error = document.querySelector('.error');
-
-
+const network = document.querySelector('.network');
 
 button.addEventListener('click', () => {
   let userLocationTrimed = userLocation.value.trim();
@@ -18,7 +16,7 @@ button.addEventListener('click', () => {
     return
   } else {
     console.log(userLocationTrimed)
-    // return userLocationTrimed;
+    network.classList.toggle('loading');
     hitApi(userLocationTrimed);
   }
 })
