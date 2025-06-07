@@ -1,49 +1,44 @@
+import { toggleTemperature } from "./toggle-temp";
 export { renderWeatherInfo };
 
 const display = document.querySelector('.display');
 const form = document.querySelector('form');
 const location = document.querySelector('.weatherLocation');
-const description = document.querySelector('.description');
+const condition = document.querySelector('.condition');
+const descriptions = document.querySelector('.description');
 const network = document.querySelector('.network');
 
 async function renderWeatherInfo(data) {
   try {
-    const address = document.createElement('div');
-    address.textContent = data.resolvedAddress;
+    let html = `
+      <div>Date: ${data.datetime}</div>
+      <div class='js-feelslike'>Feelslike: ${data.feelslike.toFixed(0)}</div>
+      <div class='js-temp'>Temp: ${data.temp.toFixed(0)}</div>
+      <div class='js-tempmax'>Temp Max: ${data.tempmax.toFixed(0)}</div>
+      <div class='js-tempmin'>Temp Min: ${data.tempmin.toFixed(0)}</div>
+      <div>UV Index: ${data.uvindex}</div>
+      <div>Icon: ${data.icon}</div>
+      <button class='js-toggleBtn'>Switch to Celcius</button>
+    `;
 
-    const latitude = document.createElement('div');
-    latitude.textContent = `Latitude: ${data.latitude}`;
+    let address = `${data.resolvedAddress}`;
+    location.innerHTML = address;
 
-    const longitude = document.createElement('div');
-    longitude.textContent = `Longitude: ${data.longitude}`;
+    let conditions = `${data.conditions}`;
+    condition.innerHTML = conditions;
 
-    const conditions = document.createElement('div');
-    conditions.textContent = `Conditions: ${data.conditions}`;
-
-    const feelslike = document.createElement('div');
-    feelslike.textContent = `Feelslike: ${data.feelslike}`;
-
-    const sunrise = document.createElement('div');
-    sunrise.textContent = `Sunrise: ${data.sunrise}`;
-
-    const sunset = document.createElement('div');
-    sunset.textContent = `Sunset: ${data.sunset}`;
-
-    const temp = document.createElement('div');
-    temp.textContent = `Temp: ${data.temp}`;
-
-    const uvindex = document.createElement('div');
-    uvindex.textContent = `UVIndex: ${data.uvindex}`;
-
-    const icon = document.createElement('div');
-    icon.textContent = `Icon: ${data.icon}`;
+    let description = `${data.description}`;
+    descriptions.innerHTML = description;
     
-    display.classList.toggle('render');
-    location.append(address);
-    description.append(conditions);
-    display.append(latitude, feelslike, sunrise, sunset, temp, uvindex, icon);
+    display.classList.toggle('render');    
+    display.innerHTML = html;
+    form.style.display = "none"; 
+    network.style.display = 'none';
 
-    form.style.display = "none";
+    const toggleBtn = await document.querySelector('.js-toggleBtn');
+    toggleBtn.addEventListener('click', () => {
+      toggleTemperature();
+    })
   } catch (error) {
     form.style.display = 'none';
     display.textContent = "An error was encountered while displaying your weather info!";
@@ -51,14 +46,3 @@ async function renderWeatherInfo(data) {
     display.style.fontSize = '25px';
   }
 }
-
-// async function generateElement(processedJsonData) {
-//   let generatedElements = '';
-
-//   await Object.keys(processedJsonData).forEach((key) => {
-//     console.log(`${key}: ${processedJsonData[key]}`)
-//     let element = `<div>${key}: ${[key]}</div>`;
-//     generatedElements += element;
-//   })
-//   console.log(generatedElements);
-// }
