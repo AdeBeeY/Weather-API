@@ -11,7 +11,6 @@ async function hitApi(userLocationTrimed) {
     const jsonData = await response.json();
     processJsonData(jsonData);
   } catch(error) {
-    // console.log(error);
     form.style.display = 'none';
     display.textContent = "An error was encountered while fetching your data!";
     display.style.color = 'red';
