@@ -7,7 +7,9 @@ let userLocation = document.getElementById('location');
 const error = document.querySelector('.error');
 const network = document.querySelector('.network');
 
-button.addEventListener('click', () => {
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
   let userLocationTrimed = userLocation.value.trim();
   if(userLocationTrimed === '') {
       // Toggles the active and prevent the user from submitting an empty string
@@ -15,12 +17,10 @@ button.addEventListener('click', () => {
     error.textContent = "The field above can't be left empty!";
     return
   } else {
-    console.log(userLocationTrimed)
+    // console.log(userLocationTrimed)
+    network.style.display = 'block';
     network.classList.toggle('loading');
+    network.style.color = 'blue';
     hitApi(userLocationTrimed);
   }
 })
-
-form.addEventListener('click', (e) => {
-  e.preventDefault();
-} )
