@@ -3,6 +3,7 @@ import { renderWeatherCondition } from "./display-weather-conditions";
 export { processJsonData };
 const display = document.querySelector('.display');
 const form = document.querySelector('form');
+const network = document.querySelector('.network');
 
 // Process the JSON() data and return an object of items needed.
 async function processJsonData(data) {
@@ -22,10 +23,17 @@ async function processJsonData(data) {
 
     renderWeatherCondition(icon);
     renderWeatherInfo(weatherInfo);
-  } catch (errror) {
+  } catch (error) {
     form.style.display = 'none';
     display.textContent = "An error was encountered while processing your data!";
     display.style.color = 'red';
     display.style.fontSize = '25px';
+    display.style.display = 'flex';
+    display.style.justifyContent = 'center';
+    display.style.border = '1px solid red';
+    display.style.padding = '10px';
+    display.style.backgroundColor = 'white';
+    
+    network.style.display = 'none';
   }
 }
