@@ -1,34 +1,56 @@
 export { toggleTemperature };
 
+const form = document.querySelector('form');
+const display = document.querySelector('.display');
+
+let isFahrenheit = true;
+
 async function toggleTemperature() {
   try {
-    let temp = await document.querySelector('.js-temp').textContent.slice(6);
-    let tempmax = await document.querySelector('.js-tempmax').textContent.slice(10);
-    let tempmin = await document.querySelector('.js-tempmin').textContent.slice(10);
-    let feelslike = await document.querySelector('.js-feelslike').textContent.slice(11);
-    
-    console.log({temp, tempmax, tempmin, feelslike});
+    let temp = await document.querySelector('.js-temp');
+    let tempmax = await document.querySelector('.js-tempmax');
+    let tempmin = await document.querySelector('.js-tempmin');
+    let feelslike = await document.querySelector('.js-feelslike');
 
-    let isFahrenheit = true;
+    if(isFahrenheit) {    
+      let fahrenheitTemp = temp.textContent;
+      let fahrenheitTempMax = tempmax.textContent;
+      let fahrenheitTempMin = tempmin.textContent;
+      let fahrenheitFeelsLike = feelslike.textContent;
+      
+      let celciusTemp = ((fahrenheitTemp - 32) * 5/9).toFixed(0);
+      let celciusTempmax = ((fahrenheitTempMax - 32) * 5/9).toFixed(0);
+      let celciusTempmin = ((fahrenheitTempMin - 32) * 5/9).toFixed(0);
+      let celciusFeelslike = ((fahrenheitFeelsLike - 32) * 5/9).toFixed(0);
 
-    if(isFahrenheit) {
-      let celciusTemp = ((temp - 32) * 5/9).toFixed(0);
-      let celciusTempmax = ((tempmax - 32) * 5/9).toFixed(0);
-      let celciusTempmin = ((tempmin - 32) * 5/9).toFixed(0);
-      let celciusFeelslike = ((feelslike - 32) * 5/9).toFixed(0);
-      console.log({celciusTemp, celciusTempmax, celciusTempmin, celciusFeelslike});
+      temp.textContent = celciusTemp;
+      tempmax.textContent = celciusTempmax;
+      tempmin.textContent = celciusTempmin;
+      feelslike.textContent = celciusFeelslike;
+
       isFahrenheit = false;
-      console.log(`isFahrenheit: ${isFahrenheit}`);
     } else {
-      let fahrenheitTemp = ((temp * 9/5) + 32).toFixed(0);
-      let fahrenheitTempmax = ((tempmax * 9/5) + 32).toFixed(0);
-      let fahrenheitTempmin = ((tempmin * 9/5) + 32).toFixed(0);
-      let fahrenheitFeelslike = ((feelslike * 9/5) + 32).toFixed(0);
-      console.log(fahrenheitTemp, fahrenheitTempmax, fahrenheitTempmin, fahrenheitFeelslike);
+      let celciusTemp = temp.textContent;
+      let celciusTempMax = tempmax.textContent;
+      let celciusTempMin = tempmin.textContent;
+      let celciusFeelsLike = feelslike.textContent;
+
+      let fahrenheitTemp = ((celciusTemp * 9/5) + 32).toFixed(0);
+      let fahrenheitTempmax = ((celciusTempMax * 9/5) + 32).toFixed(0);
+      let fahrenheitTempmin = ((celciusTempMin * 9/5) + 32).toFixed(0);
+      let fahrenheitFeelslike = ((celciusFeelsLike * 9/5) + 32).toFixed(0);
+      
+      temp.textContent = fahrenheitTemp;
+      tempmax.textContent = fahrenheitTempmax;
+      tempmin.textContent = fahrenheitTempmin;
+      feelslike.textContent = fahrenheitFeelslike;
+
       isFahrenheit = true;
-      console.log(`isFahrenheit: ${isFahrenheit}`);
     }
   } catch (error) {
-    console.log(error);
+    form.style.display = 'none';
+    display.textContent = "An error was encountered while displaying your weather info!";
+    display.style.color = 'red';
+    display.style.fontSize = '25px';
   }
 }
