@@ -1,7 +1,11 @@
 body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: lightgray;
-  text-align: center;
   margin: 0;
+  height: 100vh;
 }
 
 label,
@@ -10,6 +14,10 @@ button {
   font-size: 20px;
   margin: 5px;
   padding: 5px 20px;
+}
+
+button {
+  cursor: pointer;
 }
 
 form {
@@ -47,6 +55,7 @@ form {
 
 .render {
   border: 1px solid black;
+  border-radius: 50px;
   background-color: rgb(231, 230, 230);
   padding: 20px;
 }
@@ -54,4 +63,24 @@ form {
 .render > div {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.display {
+  display: grid;
+  grid-template-columns: 200px 100px;
+  justify-content: center;
+}
+
+.toggleBtn {
+  background-color: rgb(110, 112, 224);
+  color: white;
+  border-radius: 50px;
+  border: 1px solid rgb(0, 0, 0);
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+}
+
+.toggleBtn:hover {
+  background-color: rgb(65, 68, 209);
 }
