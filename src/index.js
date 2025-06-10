@@ -17,7 +17,6 @@ form.addEventListener('submit', (e) => {
     error.textContent = "The field above can't be left empty!";
     return
   } else {
-    // console.log(userLocationTrimed)
     network.style.display = 'block';
     network.classList.toggle('loading');
     network.style.color = 'blue';
